@@ -1,0 +1,7 @@
+{
+  "name": "akita",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
