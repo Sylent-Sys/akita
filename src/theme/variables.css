@@ -1,5 +1,8 @@
-/* For information on how to create your own theme, please see:
-http://ionicframework.com/docs/theming/ */
+/*
+For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/
+*/
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 :root {
   --ion-color-primary: #ffbf66;
   --ion-color-primary-rgb: 255, 191, 102;
@@ -109,6 +112,8 @@ http://ionicframework.com/docs/theming/ */
   --ion-background-color-step-850: #8d6547;
   --ion-background-color-step-900: #865d3e;
   --ion-background-color-step-950: #805434;
+
+  --ion-font-family: "Quicksand", sans-serif;
 
   --ion-color-accent: #a1c11f;
   --ion-color-accent-rgb: 161, 193, 31;
