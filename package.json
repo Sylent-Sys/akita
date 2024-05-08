@@ -10,8 +10,8 @@
     "test.e2e": "cypress run",
     "test.unit": "vitest",
     "lint": "eslint",
-    "live:android": "ionic capacitor run android -l --external",
-    "rebuild-asset:android": "pnpm dlx @capacitor/assets generate --android"
+    "android:live": "ionic capacitor run android -l --external",
+    "android:rebuild-assets": "pnpm dlx @capacitor/assets generate --android"
   },
   "dependencies": {
     "@capacitor/android": "6.0.0",
