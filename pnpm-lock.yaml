@@ -56,6 +56,9 @@ importers:
       react-router-dom:
         specifier: ^5.3.4
         version: 5.3.4(react@18.3.1)
+      swiper:
+        specifier: ^11.1.1
+        version: 11.1.1
     devDependencies:
       '@capacitor/assets':
         specifier: ^3.0.5
@@ -86,10 +89,10 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-legacy':
         specifier: ^5.0.0
-        version: 5.3.2(terser@5.31.0)(vite@5.2.11(@types/node@20.12.8)(terser@5.31.0))
+        version: 5.3.2(terser@5.31.0)(vite@5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0))
       '@vitejs/plugin-react':
         specifier: ^4.0.1
-        version: 4.2.1(vite@5.2.11(@types/node@20.12.8)(terser@5.31.0))
+        version: 4.2.1(vite@5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0))
       cypress:
         specifier: ^13.5.0
         version: 13.8.1
@@ -102,6 +105,9 @@ importers:
       jsdom:
         specifier: ^22.1.0
         version: 22.1.0
+      sass:
+        specifier: ^1.77.0
+        version: 1.77.0
       terser:
         specifier: ^5.4.0
         version: 5.31.0
@@ -110,13 +116,13 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.0.0
-        version: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
+        version: 5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0)
       vite-tsconfig-paths:
         specifier: ^4.3.2
-        version: 4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.8)(terser@5.31.0))
+        version: 4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0))
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)(terser@5.31.0)
+        version: 0.34.6(jsdom@22.1.0)(sass@1.77.0)(terser@5.31.0)
 
 packages:
 
@@ -2596,6 +2602,9 @@ packages:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
 
+  immutable@4.3.5:
+    resolution: {integrity: sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==}
+
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -3754,6 +3763,11 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
+  sass@1.77.0:
+    resolution: {integrity: sha512-eGj4HNfXqBWtSnvItNkn7B6icqH14i3CiCGbzMKs3BAPTq62pp9NBYsBgyN4cA+qssqo9r26lW4JSvlaUUWbgw==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+
   sax@1.1.4:
     resolution: {integrity: sha512-5f3k2PbGGp+YtKJjOItpg3P99IMD84E4HOvcfleTb5joCHNXYLsR9yWFPOYGgaeMPDubQILTCMdsFb2OMeOjtg==}
 
@@ -4000,6 +4014,10 @@ packages:
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  swiper@11.1.1:
+    resolution: {integrity: sha512-jGmEA/fNz1lACIcY4/40ggm1Gcyv+EUivmgV/Jd2WFPsEJhbWXnRAwzZR8OPjkBLtDxmzcoYG/iiAMWfRs0YKQ==}
+    engines: {node: '>= 4.7.0'}
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
@@ -6058,7 +6076,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-legacy@5.3.2(terser@5.31.0)(vite@5.2.11(@types/node@20.12.8)(terser@5.31.0))':
+  '@vitejs/plugin-legacy@5.3.2(terser@5.31.0)(vite@5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0))':
     dependencies:
       '@babel/core': 7.24.5
       '@babel/preset-env': 7.24.5(@babel/core@7.24.5)
@@ -6069,18 +6087,18 @@ snapshots:
       regenerator-runtime: 0.14.1
       systemjs: 6.15.1
       terser: 5.31.0
-      vite: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-react@4.2.1(vite@5.2.11(@types/node@20.12.8)(terser@5.31.0))':
+  '@vitejs/plugin-react@4.2.1(vite@5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0))':
     dependencies:
       '@babel/core': 7.24.5
       '@babel/plugin-transform-react-jsx-self': 7.24.5(@babel/core@7.24.5)
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.5)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -7667,6 +7685,8 @@ snapshots:
 
   ignore@5.3.1: {}
 
+  immutable@4.3.5: {}
+
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -8905,6 +8925,12 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
+  sass@1.77.0:
+    dependencies:
+      chokidar: 3.6.0
+      immutable: 4.3.5
+      source-map-js: 1.2.0
+
   sax@1.1.4: {}
 
   sax@1.3.0: {}
@@ -9198,6 +9224,8 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
+  swiper@11.1.1: {}
+
   symbol-tree@3.2.4: {}
 
   systemjs@6.15.1: {}
@@ -9478,14 +9506,14 @@ snapshots:
       core-util-is: 1.0.2
       extsprintf: 1.3.0
 
-  vite-node@0.34.6(@types/node@20.12.8)(terser@5.31.0):
+  vite-node@0.34.6(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0):
     dependencies:
       cac: 6.7.14
       debug: 4.3.4(supports-color@8.1.1)
       mlly: 1.7.0
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -9496,18 +9524,18 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.8)(terser@5.31.0)):
+  vite-tsconfig-paths@4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0)):
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
       globrex: 0.1.2
       tsconfck: 3.0.3(typescript@5.4.5)
     optionalDependencies:
-      vite: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@5.2.11(@types/node@20.12.8)(terser@5.31.0):
+  vite@5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
@@ -9515,9 +9543,10 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.12.8
       fsevents: 2.3.3
+      sass: 1.77.0
       terser: 5.31.0
 
-  vitest@0.34.6(jsdom@22.1.0)(terser@5.31.0):
+  vitest@0.34.6(jsdom@22.1.0)(sass@1.77.0)(terser@5.31.0):
     dependencies:
       '@types/chai': 4.3.15
       '@types/chai-subset': 1.3.5
@@ -9540,8 +9569,8 @@ snapshots:
       strip-literal: 1.3.0
       tinybench: 2.8.0
       tinypool: 0.7.0
-      vite: 5.2.11(@types/node@20.12.8)(terser@5.31.0)
-      vite-node: 0.34.6(@types/node@20.12.8)(terser@5.31.0)
+      vite: 5.2.11(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0)
+      vite-node: 0.34.6(@types/node@20.12.8)(sass@1.77.0)(terser@5.31.0)
       why-is-node-running: 2.2.2
     optionalDependencies:
       jsdom: 22.1.0
