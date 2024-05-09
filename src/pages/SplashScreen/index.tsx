@@ -1,4 +1,4 @@
-import { IonContent, IonPage } from "@ionic/react";
+import { IonButton, IonContent, IonPage } from "@ionic/react";
 import AnjingTuru from "@resources/img/anjing_turu.png";
 import "swiper/css";
 import "@ionic/react/css/ionic-swiper.css";
@@ -58,11 +58,15 @@ function SplashScreen() {
           </SwiperSlide>
           <SwiperSlide>
             <div className="ion-padding page four">
+              <SkipText invisible />
               <div className="welcome-container">
                 <img src={AnjingTuru} alt="Anjing Turu" />
                 <p className="welcome-title">
                   Kamu sudah <span>siap</span> untuk mulai?
                 </p>
+                <IonButton shape="round" size="large" href="/mainmenu">
+                  Siap!
+                </IonButton>
               </div>
             </div>
           </SwiperSlide>

@@ -14,6 +14,10 @@
   text-align: right;
 }
 
+.hidden-text {
+  visibility: hidden;
+}
+
 .page {
   height: 100vh;
   .welcome-container {
@@ -49,4 +53,10 @@
     --swiper-pagination-bullet-width: 1rem;
     --swiper-pagination-bullet-horizontal-gap: 0.75rem;
   }
+}
+
+.button {
+  --color: #fff;
+  width: 75%;
+  margin-top: 0.5rem;
 }
