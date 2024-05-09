@@ -32,6 +32,7 @@ import "@ionic/react/css/display.css";
 import "@/theme/variables.css";
 import { Redirect, Route } from "react-router-dom";
 import MainMenu from "@pages/MainMenu";
+import SplashScreen from "@pages/SplashScreen";
 
 setupIonicReact();
 
@@ -39,8 +40,9 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
+        <Route path="/splashscreen" render={() => <SplashScreen />} />
         <Route path="/mainmenu" render={() => <MainMenu />} />
-        <Redirect exact path="/" to="/mainmenu" />
+        <Redirect exact path="/" to="/splashscreen" />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
