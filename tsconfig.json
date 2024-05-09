@@ -30,6 +30,9 @@
       "@pages/*": [
         "./pages/*"
       ],
+      "@resources/*": [
+        "./resources/*"
+      ],
     },
   },
   "include": [
