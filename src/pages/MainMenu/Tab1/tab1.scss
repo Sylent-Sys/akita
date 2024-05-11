@@ -1,3 +1,80 @@
+
+.content {
+    background-color: white;
+    height: 100vh;
+}
 .name {
     color: #F3B660;
+    text-align: left;
+    margin-left: 13vw;
+    font-weight: bolder;
 }
+
+.sub-head{
+    font-weight: bold;
+    border-bottom: 5px solid #F3B660;
+    padding-bottom: 5%;
+
+}
+
+
+
+h3 {
+    font-weight: bold;
+    margin: 9vw;
+    margin-left: 20vw;
+}
+.sub-head2{
+    color: #9E9E9E;
+    border-bottom: 5px solid #F3B660;
+    padding-bottom: 5%;
+}
+
+.header {
+    text-align: left;
+    margin-left: 13vw;
+    font-weight: bolder;
+}
+
+.card-1 {
+    width: 100vw;
+    background-color: #FBF7F4;
+    margin-top: -9vw;
+    height: 100vh;
+    border-radius: 7%;
+    .card-subtitle {
+        margin-top: 4vw;
+        text-align: center;
+        color: #774C2A;
+        display: inline-block;
+        font-weight: bolder;
+        border: 4px solid #774C2A;
+        border-radius: 30px;
+        width: fit-content;
+        padding: 1%;
+        padding-inline: 5%;
+    }
+    .month {
+        margin-top: 5vw;
+        text-align: left;
+        font-weight: bold;
+        color: #F3B660;
+    }
+}
+
+.card-2 {
+    width: 99vw;
+    margin-left: 8vw;
+    background-color: #FBF7F4;
+    margin-top: -9vw;
+    height: 100vh;
+    border-radius: 7%;
+}
+
+
+
+
+
+
+
+
