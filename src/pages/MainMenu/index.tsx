@@ -8,9 +8,9 @@ import {
 } from "@ionic/react";
 import { triangle, ellipse, square } from "ionicons/icons";
 import { Redirect, Route } from "react-router-dom";
-import Tab1 from "@pages/Tab1";
-import Tab2 from "@pages/Tab2";
-import Tab3 from "@pages/Tab3";
+import Tab1 from "@pages/MainMenu/Tab1";
+import Tab2 from "@pages/MainMenu/Tab2";
+import Tab3 from "@pages/MainMenu/Tab3";
 
 function MainMenu() {
   return (
