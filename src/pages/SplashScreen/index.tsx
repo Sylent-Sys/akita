@@ -1,7 +1,5 @@
 import { IonButton, IonContent, IonPage } from "@ionic/react";
 import AnjingTuru from "@resources/img/anjing_turu.png";
-import "swiper/css";
-import "@ionic/react/css/ionic-swiper.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import SkipText from "@components/SplashScreen/SkipText";
