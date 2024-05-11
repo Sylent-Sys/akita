@@ -1,14 +1,11 @@
 import { IonButton, IonContent, IonPage } from "@ionic/react";
 import AnjingTuru from "@resources/img/anjing_turu.png";
-import "swiper/css";
-import "@ionic/react/css/ionic-swiper.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-
+import SkipText from "@components/SplashScreen/SkipText";
 import "swiper/css/bundle";
 import "@ionic/react/css/ionic-swiper.css";
 import "@resources/scss/SplashScreen.scss";
-import SkipText from "@components/SplashScreen/SkipText";
 
 function SplashScreen() {
   return (
@@ -64,7 +61,11 @@ function SplashScreen() {
                 <p className="welcome-title">
                   Kamu sudah <span>siap</span> untuk mulai?
                 </p>
-                <IonButton shape="round" size="large" href="/mainmenu">
+                <IonButton
+                  shape="round"
+                  size="large"
+                  routerLink="/mainmenu"
+                >
                   Siap!
                 </IonButton>
               </div>
