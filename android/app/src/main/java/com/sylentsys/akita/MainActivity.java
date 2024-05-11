@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.sylentsys.akita;
 
 import com.getcapacitor.BridgeActivity;
 
