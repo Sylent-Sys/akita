@@ -33,19 +33,27 @@ import "@/theme/variables.css";
 import { Redirect, Route } from "react-router-dom";
 import MainMenu from "@pages/MainMenu";
 import SplashScreen from "@pages/SplashScreen";
-
+import AuthLogin from "./pages/Auth/Login";
+import AuthPersonalization from "./pages/Auth/Personalization";
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/splashscreen" render={() => <SplashScreen />} />
-        <Route path="/mainmenu" render={() => <MainMenu />} />
-        <Redirect exact path="/" to="/splashscreen" />
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route path="/splashscreen" render={() => <SplashScreen />} />
+          <Route path="/auth/login" render={() => <AuthLogin />} />
+          <Route
+            path="/auth/personalization"
+            render={() => <AuthPersonalization />}
+          />
+          <Route path="/mainmenu" render={() => <MainMenu />} />
+          <Redirect exact from="/" to="/splashscreen" />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
