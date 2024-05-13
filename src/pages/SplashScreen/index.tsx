@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonPage } from "@ionic/react";
+import { IonButton, IonContent, IonPage, useIonRouter } from "@ionic/react";
 import AnjingTuru from "@resources/img/anjing_turu.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -6,11 +6,25 @@ import SkipText from "@components/SplashScreen/SkipText";
 import "swiper/css/bundle";
 import "@ionic/react/css/ionic-swiper.css";
 import "@resources/scss/SplashScreen.scss";
+import { useEffect } from "react";
+import { Preferences } from "@capacitor/preferences";
 
 function SplashScreen() {
+  const router = useIonRouter();
+  const checkAlreadyVisitSplashScreen = async () => {
+    const isAlreadyVisitSplashScreen = await Preferences.get({
+      key: "isAlreadyVisitSplashScreen",
+    });
+    if (isAlreadyVisitSplashScreen.value) {
+      router.push("/auth/login", "forward", "replace");
+    }
+  };
+  useEffect(() => {
+    checkAlreadyVisitSplashScreen();
+  }, []);
   return (
     <IonPage>
-      <IonContent fullscreen={true}>
+      <IonContent fullscreen={true} className="splash-screen-page">
         <Swiper
           modules={[Pagination]}
           pagination={{
@@ -64,7 +78,14 @@ function SplashScreen() {
                 <IonButton
                   shape="round"
                   size="large"
-                  routerLink="/mainmenu"
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    router.push("/auth/login", "forward", "replace");
+                    await Preferences.set({
+                      key: "isAlreadyVisitSplashScreen",
+                      value: "1",
+                    });
+                  }}
                 >
                   Siap!
                 </IonButton>
