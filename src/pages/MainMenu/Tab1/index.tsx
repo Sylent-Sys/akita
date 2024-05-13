@@ -80,7 +80,11 @@ const Tab1: React.FC = () => {
                       <IonIcon className='lock' aria-hidden="true" icon={lockClosedOutline} />
                     </h3>
                   </IonRow>
+<<<<<<< HEAD
                   <IonCard className='card'>
+=======
+                  <IonCard className='card-1'>
+>>>>>>> 6160b97e308fd67f11a1f836f897596f9f398ac4
                     <IonCardContent>
                       <h1 className='card-subtitle'>Kalender</h1>
                       <h1 className='month'>Mei 2024</h1>

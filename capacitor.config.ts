@@ -10,6 +10,7 @@ const config: CapacitorConfig = {
     SplashScreen: {
       backgroundColor: "#FCF4EE"
     }
+
   }
 };
 
