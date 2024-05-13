@@ -8,6 +8,7 @@ import "@ionic/react/css/ionic-swiper.css";
 import "@resources/scss/SplashScreen.scss";
 import { useEffect } from "react";
 import { Preferences } from "@capacitor/preferences";
+
 function SplashScreen() {
   const router = useIonRouter();
   const checkAlreadyVisitSplashScreen = async () => {
