@@ -31,21 +31,33 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "@/theme/variables.css";
 import { Redirect, Route } from "react-router-dom";
-import MainMenu from "@pages/MainMenu";
-import SplashScreen from "@pages/SplashScreen";
-
+import { lazy, Suspense } from "react";
+import Loading from "@pages/Loading";
+const SplashScreen = lazy(() => import("@pages/SplashScreen"));
+const AuthLogin = lazy(() => import("@pages/Auth/Login"));
+const AuthPersonalization = lazy(() => import("@pages/Auth/Personalization"));
+const MainMenu = lazy(() => import("@pages/MainMenu"));
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/splashscreen" render={() => <SplashScreen />} />
-        <Route path="/mainmenu" render={() => <MainMenu />} />
-        <Redirect exact path="/" to="/splashscreen" />
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Suspense fallback={<Loading />}>
+            <Route path="/splashscreen" render={() => <SplashScreen />} />
+            <Route path="/auth/login" render={() => <AuthLogin />} />
+            <Route
+              path="/auth/personalization"
+              render={() => <AuthPersonalization />}
+            />
+            <Route path="/mainmenu" render={() => <MainMenu />} />
+            <Redirect exact from="/" to="/splashscreen" />
+          </Suspense>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
