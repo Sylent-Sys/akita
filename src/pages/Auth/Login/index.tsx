@@ -11,8 +11,68 @@ import LogoAkitaGambarGepeng from "@resources/img/logo_akita_gambar_gepeng.png";
 import LogoAkitaText from "@resources/img/logo_akita_text.png";
 import "@resources/scss/AuthLogin.scss";
 import { logoGoogle, personOutline } from "ionicons/icons";
+import {
+  authFirebase,
+  signInWithGoogle,
+  signInWithPhoneNumber,
+} from "@plugins/Firebase";
+import { useEffect, useState } from "react";
+import { MaskitoOptions, maskitoTransform } from "@maskito/core";
+import { useMaskito } from "@maskito/react";
+import { RecaptchaVerifier } from "firebase/auth";
+import { Capacitor } from "@capacitor/core";
+
 function AuthLogin() {
   const router = useIonRouter();
+  const phoneMaskOptions: MaskitoOptions = {
+    mask: [
+      "(",
+      /[0-9]/,
+      /[0-9]/,
+      /[0-9]/,
+      ")",
+      " ",
+      /[0-9]/,
+      /[0-9]/,
+      /[0-9]/,
+      /[0-9]/,
+      "-",
+      /[0-9]/,
+      /[0-9]/,
+      /[0-9]/,
+      /[0-9]/,
+      "-",
+      /[0-9]/,
+    ],
+  };
+  const phoneMask = useMaskito({ options: phoneMaskOptions });
+  const [phoneNumber, setPhoneNumber] = useState(
+    maskitoTransform("", phoneMaskOptions)
+  );
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) {
+      const element = document.querySelector(
+        ".container-otp ion-button"
+      ) as HTMLElement;
+      if (element) {
+        window.recaptchaVerifier = new RecaptchaVerifier(
+          authFirebase,
+          element,
+          {
+            size: "invisible",
+            callback: (_response: any) => {
+              // reCAPTCHA solved, allow signInWithPhoneNumber.
+              const unmaskedPhoneNumber = phoneNumber.replace(/[^0-9]/g, "");
+              signInWithPhoneNumber(`+62${unmaskedPhoneNumber}`);
+            },
+          }
+        );
+      } else {
+        console.error("Element not found");
+      }
+    }
+  }),
+    [];
   return (
     <IonPage>
       <IonContent fullscreen={true} className="auth-page">
@@ -32,11 +92,21 @@ function AuthLogin() {
           </div>
           <div className="container-otp">
             <IonInput
-              aria-label="Phone Number"
+              aria-label="(xxx) xxxx-xxxx-x"
               labelPlacement="stacked"
-              placeholder="Phone Number"
+              placeholder="(xxx) xxxx-xxxx-x"
               class="otp"
               fill="outline"
+              onIonInput={(e) => {
+                setPhoneNumber(e.detail.value || "");
+              }}
+              value={phoneNumber}
+              ref={async (input) => {
+                if (input) {
+                  const inputElement = await input.getInputElement();
+                  phoneMask(inputElement);
+                }
+              }}
             >
               <div slot="start">
                 <div className="container-start">
@@ -45,7 +115,19 @@ function AuthLogin() {
                 </div>
               </div>
             </IonInput>
-            <IonButton>Kirim OTP</IonButton>
+            <IonButton
+              onClick={() => {
+                if (Capacitor.isNativePlatform()) {
+                  const unmaskedPhoneNumber = phoneNumber.replace(
+                    /[^0-9]/g,
+                    ""
+                  );
+                  signInWithPhoneNumber(`+62${unmaskedPhoneNumber}`);
+                }
+              }}
+            >
+              Kirim OTP
+            </IonButton>
           </div>
           <div className="container-or">
             <div className="garis-1"></div>
@@ -54,7 +136,15 @@ function AuthLogin() {
           </div>
           <div className="container-login-by">
             <div className="google">
-              <IonButton>
+              <IonButton
+                onClick={async (e) => {
+                  e.preventDefault();
+                  const result = await signInWithGoogle();
+                  if (result) {
+                    router.push("/auth/personalization", "forward", "replace");
+                  }
+                }}
+              >
                 <IonIcon slot="icon-only" icon={logoGoogle}></IonIcon>
                 Lanjut dengan Google
               </IonButton>
