@@ -1,4 +1,3 @@
-/// <reference types="@capacitor/splash-screen" />
 /// <reference types="@capacitor-firebase/authentication" />
 
 import type { CapacitorConfig } from '@capacitor/cli';
@@ -8,9 +7,6 @@ const config: CapacitorConfig = {
   appName: 'akita',
   webDir: 'dist',
   plugins: {
-    SplashScreen: {
-      backgroundColor: "#FCF4EE"
-    },
     FirebaseAuthentication: {
       providers: [
         "google.com",
