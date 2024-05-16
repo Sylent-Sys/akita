@@ -29,6 +29,12 @@
     }
     .container-otp {
       margin-top: 1rem;
+      .recaptcha-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+      }
       ion-input.otp {
         --background: #fff;
         --color: #000;

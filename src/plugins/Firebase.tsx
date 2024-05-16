@@ -13,6 +13,7 @@ import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { getAnalytics } from "firebase/analytics";
 import { Capacitor } from "@capacitor/core";
 import { Dialog } from "@capacitor/dialog";
+import { UseIonLoadingResult, UseIonRouterResult } from "@ionic/react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -58,7 +59,12 @@ export const signInWithGoogle = async () => {
   return await signInWithCredential(auth, credential);
 };
 
-export const signInWithPhoneNumber = (phoneNumber: string) => {
+export const signInWithPhoneNumber = (
+  phoneNumber: string,
+  router: UseIonRouterResult,
+  loading: UseIonLoadingResult
+) => {
+  const [present, dismiss] = loading;
   return new Promise<void>(async (resolve) => {
     await FirebaseAuthentication.addListener("phoneCodeSent", async (event) => {
       // 2. Let the user enter the SMS code
@@ -66,14 +72,24 @@ export const signInWithPhoneNumber = (phoneNumber: string) => {
         title: "Enter Verification Code",
         message: `Please enter the verification code that was sent to your mobile device.`,
       });
+      if (cancelled) {
+        return;
+      }
       // 3. Sign in on the web layer using the verification ID and verification code.
       const credential = PhoneAuthProvider.credential(
         event.verificationId,
         value ?? ""
       );
       const auth = getAuthFirebase();
-      await signInWithCredential(auth, credential);
+      const result = await signInWithCredential(auth, credential);
+      dismiss();
+      if (result) {
+        router.push("/auth/personalization", "forward", "replace");
+      }
       resolve();
+    });
+    present({
+      message: "Sending OTP...",
     });
     // 1. Start phone number verification
     return await FirebaseAuthentication.signInWithPhoneNumber({

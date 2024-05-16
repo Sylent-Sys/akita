@@ -4,6 +4,7 @@ import {
   IonIcon,
   IonInput,
   IonPage,
+  useIonLoading,
   useIonRouter,
 } from "@ionic/react";
 import { ID } from "country-flag-icons/react/3x2";
@@ -49,21 +50,27 @@ function AuthLogin() {
   const [phoneNumber, setPhoneNumber] = useState(
     maskitoTransform("", phoneMaskOptions)
   );
+  const loading = useIonLoading();
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) {
       const element = document.querySelector(
-        ".container-otp ion-button"
+        ".container-otp > .recaptcha-container"
       ) as HTMLElement;
       if (element) {
+        authFirebase.useDeviceLanguage();
         window.recaptchaVerifier = new RecaptchaVerifier(
           authFirebase,
           element,
           {
-            size: "invisible",
+            size: "normal",
             callback: (_response: any) => {
               // reCAPTCHA solved, allow signInWithPhoneNumber.
               const unmaskedPhoneNumber = phoneNumber.replace(/[^0-9]/g, "");
-              signInWithPhoneNumber(`+62${unmaskedPhoneNumber}`);
+              signInWithPhoneNumber(
+                `+62${unmaskedPhoneNumber}`,
+                router,
+                loading
+              );
             },
           }
         );
@@ -115,6 +122,7 @@ function AuthLogin() {
                 </div>
               </div>
             </IonInput>
+            <div className="recaptcha-container"></div>
             <IonButton
               onClick={() => {
                 if (Capacitor.isNativePlatform()) {
@@ -122,7 +130,13 @@ function AuthLogin() {
                     /[^0-9]/g,
                     ""
                   );
-                  signInWithPhoneNumber(`+62${unmaskedPhoneNumber}`);
+                  signInWithPhoneNumber(
+                    `+62${unmaskedPhoneNumber}`,
+                    router,
+                    loading
+                  );
+                } else {
+                  window.recaptchaVerifier?.render();
                 }
               }}
             >
