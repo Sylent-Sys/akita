@@ -84,7 +84,7 @@ export const signInWithPhoneNumber = (
       const result = await signInWithCredential(auth, credential);
       dismiss();
       if (result) {
-        router.push("/auth/personalization", "forward", "replace");
+        router.push("/mainmenu", "forward", "replace");
       }
       resolve();
     });
