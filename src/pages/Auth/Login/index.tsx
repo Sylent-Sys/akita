@@ -175,6 +175,9 @@ function AuthLogin() {
               </IonButton>
             </div>
           </div>
+          <div className="spacer">
+
+          </div>
           <div className="container-terms-privacy">
             <p className="paragraf-1">Dengan melanjutkan, Anda menyetujui</p>
             <p className="paragraf-2">
