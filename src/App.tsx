@@ -52,7 +52,11 @@ const App: React.FC = () => {
               render={() => <AuthPersonalization />}
             />
             <Route path="/mainmenu" render={() => <MainMenu />} />
-            <Redirect exact from="/" to="/splashscreen" />
+            <Route
+              path="/"
+              exact
+              render={() => <Redirect to="/splashscreen" />}
+            />
           </Suspense>
         </IonRouterOutlet>
       </IonReactRouter>
