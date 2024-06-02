@@ -29,6 +29,7 @@
     "@maskito/react": "^2.3.1",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.7.2",
     "country-flag-icons": "^1.5.11",
     "firebase": "^10.11.1",
     "ionicons": "^7.0.0",
