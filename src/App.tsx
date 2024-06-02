@@ -30,6 +30,9 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "@/theme/variables.css";
+
+/* Tailwind CSS */
+import "@/theme/tailwind.css";
 import { Redirect, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loading from "@pages/Loading";
