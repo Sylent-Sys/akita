@@ -82,13 +82,13 @@ export const signInWithPhoneNumber = (
       );
       const auth = getAuthFirebase();
       const result = await signInWithCredential(auth, credential);
-      dismiss();
+      await dismiss();
       if (result) {
         router.push("/mainmenu", "forward", "replace");
       }
       resolve();
     });
-    present({
+    await present({
       message: "Sending OTP...",
     });
     // 1. Start phone number verification
