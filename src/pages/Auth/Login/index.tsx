@@ -22,6 +22,11 @@ import { MaskitoOptions, maskitoTransform } from "@maskito/core";
 import { useMaskito } from "@maskito/react";
 import { RecaptchaVerifier } from "firebase/auth";
 import { Capacitor } from "@capacitor/core";
+import {
+  FirebaseAuthentication,
+  User,
+} from "@capacitor-firebase/authentication";
+import { Redirect } from "react-router-dom";
 
 function AuthLogin() {
   const router = useIonRouter();
@@ -51,7 +56,13 @@ function AuthLogin() {
     maskitoTransform("", phoneMaskOptions)
   );
   const loading = useIonLoading();
+  const [user, setUser] = useState<User | null>(null);
+  async function getUserLogin() {
+    const result = await FirebaseAuthentication.getCurrentUser();
+    setUser(result.user);
+  }
   useEffect(() => {
+    getUserLogin();
     if (!Capacitor.isNativePlatform()) {
       const element = document.querySelector(
         ".container-otp > .recaptcha-container"
@@ -80,7 +91,7 @@ function AuthLogin() {
     }
   }),
     [];
-  return (
+  return user != null ? (
     <IonPage>
       <IonContent fullscreen={true} className="auth-page">
         <div className="ion-padding container-content">
@@ -175,9 +186,7 @@ function AuthLogin() {
               </IonButton>
             </div>
           </div>
-          <div className="spacer">
-
-          </div>
+          <div className="spacer"></div>
           <div className="container-terms-privacy">
             <p className="paragraf-1">Dengan melanjutkan, Anda menyetujui</p>
             <p className="paragraf-2">
@@ -187,6 +196,10 @@ function AuthLogin() {
         </div>
       </IonContent>
     </IonPage>
+  ) : (
+    <div>
+      <Redirect to="/mainmenu" />
+    </div>
   );
 }
 
