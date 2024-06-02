@@ -155,7 +155,7 @@ function AuthLogin() {
                   e.preventDefault();
                   const result = await signInWithGoogle();
                   if (result) {
-                    router.push("/auth/personalization", "forward", "replace");
+                    router.push("/mainmenu", "forward", "replace");
                   }
                 }}
               >
@@ -167,7 +167,7 @@ function AuthLogin() {
               <IonButton
                 onClick={(e) => {
                   e.preventDefault();
-                  router.push("/auth/personalization", "forward", "replace");
+                  router.push("/mainmenu", "forward", "replace");
                 }}
               >
                 <IonIcon slot="icon-only" icon={personOutline}></IonIcon>
