@@ -23,7 +23,7 @@ function MainMenu() {
         <Route path="/mainmenu/tab4" render={() => <Tab4 />} />
         <Redirect exact path="/mainmenu" to="/mainmenu/tab1" />
       </IonRouterOutlet>
-      <IonTabBar slot="bottom">
+      <IonTabBar slot="bottom" className="border-t-2 border-t-[#BABABA]">
         <IonTabButton tab="tab1" href="/mainmenu/tab1">
           <IonIcon aria-hidden="true" icon={home} />
           <IonLabel>Dashboard</IonLabel>
