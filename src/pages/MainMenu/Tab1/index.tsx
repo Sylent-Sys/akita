@@ -9,7 +9,7 @@ import {
   lockClosed,
 } from "ionicons/icons";
 import { getDaysInMonth, useCalender } from "@/plugins/Calender";
-import DishCard from "@/components/MainMenu/Tab1/DishCard";
+import DishCard from "@/components/MainMenu/DishCard";
 const Tab1: React.FC = () => {
   const [dishDaily, setDishDaily] = useState<IDishDaily | null>();
   const [premium, setPremium] = useState<boolean>(false);
