@@ -1,6 +1,5 @@
 import DishCard from "@/components/MainMenu/DishCard";
 import { Dish } from "@/interfaces/IDishDaily";
-import { Axios } from "@/plugins/Axios";
 import {
   IonContent,
   IonIcon,
@@ -10,6 +9,7 @@ import {
 } from "@ionic/react";
 import { caretDownOutline, caretForwardOutline, search } from "ionicons/icons";
 import { useEffect, useState } from "react";
+import Http from "@/plugins/Http";
 
 const Tab2: React.FC = () => {
   const [dish, setDish] = useState<Dish[] | null>();
@@ -35,7 +35,7 @@ const Tab2: React.FC = () => {
   }>({});
   useEffect(() => {
     if (dish == null) {
-      Axios.get("/dish/").then((res) => {
+      new Http('/dish').request().then((res) => {
         const result: Dish[] = res.data;
         const nation = Array.from(
           new Set(result.map((item) => item.nation))
@@ -182,7 +182,11 @@ const Tab2: React.FC = () => {
                           {valueFilter}{" "}
                           <IonIcon
                             className="text-sm"
-                            icon={expandList[valueFilter] ? caretForwardOutline : caretDownOutline}
+                            icon={
+                              expandList[valueFilter]
+                                ? caretForwardOutline
+                                : caretDownOutline
+                            }
                           />
                         </span>
                       </p>

@@ -1,5 +1,4 @@
 import { IDishDaily } from "@/interfaces/IDishDaily";
-import { Axios } from "@/plugins/Axios";
 import { IonContent, IonIcon, IonPage, IonSpinner } from "@ionic/react";
 import { useEffect, useState } from "react";
 import AnjingMelet from "@resources/img/anjing_melet.png";
@@ -10,6 +9,8 @@ import {
 } from "ionicons/icons";
 import { getDaysInMonth, useCalender } from "@/plugins/Calender";
 import DishCard from "@/components/MainMenu/DishCard";
+import { CapacitorHttp } from "@capacitor/core";
+import Http from "@/plugins/Http";
 const Tab1: React.FC = () => {
   const [dishDaily, setDishDaily] = useState<IDishDaily | null>();
   const [premium, setPremium] = useState<boolean>(false);
@@ -55,7 +56,7 @@ const Tab1: React.FC = () => {
   };
   useEffect(() => {
     if (dishDaily == null) {
-      Axios.get("/dish/daily").then((res) => {
+      new Http("/dish/daily").request().then((res) => {
         const result: IDishDaily = res.data;
         const sortedResult: IDishDaily = {};
         Object.keys(result)
