@@ -1,11 +1,6 @@
 import { IDishDaily } from "@/interfaces/IDishDaily";
 import { Axios } from "@/plugins/Axios";
-import {
-  IonContent,
-  IonIcon,
-  IonPage,
-  IonSpinner,
-} from "@ionic/react";
+import { IonContent, IonIcon, IonPage, IonSpinner } from "@ionic/react";
 import { useEffect, useState } from "react";
 import AnjingMelet from "@resources/img/anjing_melet.png";
 import {
@@ -123,11 +118,11 @@ const Tab1: React.FC = () => {
             </div>
           </div>
           <div className="mt-3">
-            {
-              dishDaily == null && (
+            {dishDaily == null && (
+              <div className="flex flex-row items-center justify-center w-full">
                 <IonSpinner name="dots" />
-              )
-            }
+              </div>
+            )}
             {dishDaily &&
               Object.keys(dishDaily).map((key) => {
                 return (
