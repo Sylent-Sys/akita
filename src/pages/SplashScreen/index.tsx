@@ -8,6 +8,8 @@ import "@ionic/react/css/ionic-swiper.css";
 import "@resources/scss/SplashScreen.scss";
 import { useEffect } from "react";
 import { Preferences } from "@capacitor/preferences";
+import { authFirebase } from "@/plugins/Firebase";
+import { FirebaseAuthentication, User } from "@capacitor-firebase/authentication";
 
 function SplashScreen() {
   const router = useIonRouter();
@@ -20,6 +22,13 @@ function SplashScreen() {
     }
   };
   useEffect(() => {
+    authFirebase;
+    FirebaseAuthentication.addListener("authStateChange", async (event) => {
+      const user = event.user as User;
+      if (user) {
+        router.push("/mainmenu", "forward", "replace");
+      }
+    });
     checkAlreadyVisitSplashScreen();
   }, []);
   return (
