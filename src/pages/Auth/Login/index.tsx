@@ -22,11 +22,7 @@ import { MaskitoOptions, maskitoTransform } from "@maskito/core";
 import { useMaskito } from "@maskito/react";
 import { RecaptchaVerifier } from "firebase/auth";
 import { Capacitor } from "@capacitor/core";
-import {
-  FirebaseAuthentication,
-  User,
-} from "@capacitor-firebase/authentication";
-import { Redirect } from "react-router-dom";
+import { FirebaseAuthentication, User } from "@capacitor-firebase/authentication";
 
 function AuthLogin() {
   const router = useIonRouter();
@@ -56,13 +52,14 @@ function AuthLogin() {
     maskitoTransform("", phoneMaskOptions)
   );
   const loading = useIonLoading();
-  const [user, setUser] = useState<User | null>(null);
-  async function getUserLogin() {
-    const result = await FirebaseAuthentication.getCurrentUser();
-    setUser(result.user);
-  }
   useEffect(() => {
-    getUserLogin();
+    authFirebase;
+    FirebaseAuthentication.addListener("authStateChange", async (event) => {
+      const user = event.user as User;
+      if (user) {
+        router.push("/mainmenu", "forward", "replace");
+      }
+    });
     if (!Capacitor.isNativePlatform()) {
       const element = document.querySelector(
         ".container-otp > .recaptcha-container"
@@ -77,11 +74,7 @@ function AuthLogin() {
             callback: (_response: any) => {
               // reCAPTCHA solved, allow signInWithPhoneNumber.
               const unmaskedPhoneNumber = phoneNumber.replace(/[^0-9]/g, "");
-              signInWithPhoneNumber(
-                `+62${unmaskedPhoneNumber}`,
-                router,
-                loading
-              );
+              signInWithPhoneNumber(`+62${unmaskedPhoneNumber}`, loading);
             },
           }
         );
@@ -91,7 +84,7 @@ function AuthLogin() {
     }
   }),
     [];
-  return user != null ? (
+  return (
     <IonPage>
       <IonContent fullscreen={true} className="auth-page">
         <div className="ion-padding container-content">
@@ -141,11 +134,7 @@ function AuthLogin() {
                     /[^0-9]/g,
                     ""
                   );
-                  signInWithPhoneNumber(
-                    `+62${unmaskedPhoneNumber}`,
-                    router,
-                    loading
-                  );
+                  signInWithPhoneNumber(`+62${unmaskedPhoneNumber}`, loading);
                 } else {
                   window.recaptchaVerifier?.render();
                 }
@@ -164,10 +153,7 @@ function AuthLogin() {
               <IonButton
                 onClick={async (e) => {
                   e.preventDefault();
-                  const result = await signInWithGoogle();
-                  if (result) {
-                    router.push("/mainmenu", "forward", "replace");
-                  }
+                  await signInWithGoogle();
                 }}
               >
                 <IonIcon slot="icon-only" icon={logoGoogle}></IonIcon>
@@ -196,10 +182,6 @@ function AuthLogin() {
         </div>
       </IonContent>
     </IonPage>
-  ) : (
-    <div>
-      <Redirect to="/mainmenu" />
-    </div>
   );
 }
 
