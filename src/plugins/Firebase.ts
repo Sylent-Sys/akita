@@ -61,7 +61,6 @@ export const signInWithGoogle = async () => {
 
 export const signInWithPhoneNumber = (
   phoneNumber: string,
-  router: UseIonRouterResult,
   loading: UseIonLoadingResult
 ) => {
   const [present, dismiss] = loading;
@@ -81,11 +80,8 @@ export const signInWithPhoneNumber = (
         value ?? ""
       );
       const auth = getAuthFirebase();
-      const result = await signInWithCredential(auth, credential);
+      await signInWithCredential(auth, credential);
       await dismiss();
-      if (result) {
-        router.push("/mainmenu", "forward", "replace");
-      }
       resolve();
     });
     await present({
