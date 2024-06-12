@@ -9,7 +9,6 @@ import {
 } from "ionicons/icons";
 import { getDaysInMonth, useCalender } from "@/plugins/Calender";
 import DishCard from "@/components/MainMenu/DishCard";
-import { CapacitorHttp } from "@capacitor/core";
 import Http from "@/plugins/Http";
 const Tab1: React.FC = () => {
   const [dishDaily, setDishDaily] = useState<IDishDaily | null>();
