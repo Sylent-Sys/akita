@@ -36,6 +36,7 @@ import "@/theme/tailwind.css";
 import { Redirect, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loading from "@pages/Loading";
+const RecipeDetail = lazy(() => import("@pages/Recipe/Detail"));
 const SplashScreen = lazy(() => import("@pages/SplashScreen"));
 const AuthLogin = lazy(() => import("@pages/Auth/Login"));
 const AuthPersonalization = lazy(() => import("@pages/Auth/Personalization"));
@@ -54,6 +55,7 @@ const App: React.FC = () => {
               path="/auth/personalization"
               render={() => <AuthPersonalization />}
             />
+            <Route path="/recipe/detail/:id" render={() => <RecipeDetail />} />
             <Route path="/mainmenu" render={() => <MainMenu />} />
             <Route
               path="/"

@@ -128,7 +128,7 @@ const Tab1: React.FC = () => {
                 return (
                   <DishCard
                     key={key}
-                    id={key}
+                    id={dishDaily[key].id}
                     name={dishDaily[key].name}
                     nation={dishDaily[key].nation}
                     groceries={dishDaily[key].groceries}

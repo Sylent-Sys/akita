@@ -1,8 +1,9 @@
 import { Dish } from "@/interfaces/IDishDaily";
-import { IonIcon } from "@ionic/react";
+import { IonIcon, useIonRouter } from "@ionic/react";
 import { chevronForwardCircleOutline, sunny } from "ionicons/icons";
 
-function DishCard({ name, nation, type }: Partial<Dish>) {
+function DishCard({ id, name, nation, type }: Dish) {
+  const route = useIonRouter();
   return (
     <div className="mt-3 bg-white rounded p-4 shadow flex flex-row">
       <img className="rounded" src="https://placehold.co/90" alt="" />
@@ -18,7 +19,12 @@ function DishCard({ name, nation, type }: Partial<Dish>) {
         </div>
         <div className="mt-4 font-semibold flex flex-row items-center">
           <p className="w-full">{name}</p>
-          <div className="text-3xl flex flex-row items-center">
+          <div
+            className="text-3xl flex flex-row items-center"
+            onClick={() => {
+              route.push(`/recipe/detail/${id}`);
+            }}
+          >
             <IonIcon icon={chevronForwardCircleOutline} />
           </div>
         </div>
