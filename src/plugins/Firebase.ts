@@ -13,7 +13,7 @@ import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { getAnalytics } from "firebase/analytics";
 import { Capacitor } from "@capacitor/core";
 import { Dialog } from "@capacitor/dialog";
-import { UseIonLoadingResult, UseIonRouterResult } from "@ionic/react";
+import { UseIonLoadingResult } from "@ionic/react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
