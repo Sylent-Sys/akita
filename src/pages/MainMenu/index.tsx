@@ -14,19 +14,15 @@ import Tab2 from "@pages/MainMenu/Tab2";
 import Tab3 from "@pages/MainMenu/Tab3";
 import Tab4 from "@pages/MainMenu/Tab4";
 import { useEffect } from "react";
-import {
-  FirebaseAuthentication,
-  User,
-} from "@capacitor-firebase/authentication";
+import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { authFirebase } from "@/plugins/Firebase";
 
 function MainMenu() {
   const router = useIonRouter();
   useEffect(() => {
-    authFirebase
-    FirebaseAuthentication.addListener("authStateChange", async (event) => {
-      const user = event.user as User;
-      if (!user) {
+    authFirebase;
+    FirebaseAuthentication.getCurrentUser().then((res) => {
+      if (!res.user) {
         router.push("/auth/login", "forward", "replace");
       }
     });
